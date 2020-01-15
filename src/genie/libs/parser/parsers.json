@@ -1549,17 +1549,9 @@
             "package": "genie.libs.parser",
             "class": "ShowPlatformResources",
             "doc": "Parser for show platform resources\n    parser class - implements detail parsing mechanisms for cli output.\n    ",
-            "schema": "",
+            "schema": "{\n'processor': {\n    Any(): {\n    Any(): {\n    'usage': str,\n    'max': str,\n    'warning': str,\n    'critical': str,\n    'state': str,\n    },\n    },\n    },\n}",
             "uid": "show_platform_resources",
-            "url": "",
-            "sdwan": {
-                "module_name": "show_platform_resources",
-                "package": "genie.libs.parser",
-                "class": "ShowPlatformResources",
-                "doc": " Parser for:\n        * 'show platform resources'\n    ",
-                "schema": "",
-                "url": ""
-            }
+            "url": ""
         }
     },
     "show platform vm": {

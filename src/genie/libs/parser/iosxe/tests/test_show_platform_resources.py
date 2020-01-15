@@ -5,11 +5,12 @@ from unittest.mock import Mock
 from pyats.topology import Device
 from pyats.topology import loader
 
-from pprint import pprint
+from genie.metaparser.util.exceptions import SchemaEmptyParserError,\
+                                             SchemaMissingKeyError
 
-from genie.metaparser.util.exceptions import SchemaEmptyParserError, SchemaMissingKeyError
+from genie.libs.parser.iosxe.show_platform_resources \
+                        import ShowPlatformResources
 
-from genie.libs.parser.iosxe.show_platform_resources import ShowPlatformResources
 
 # ============================================
 # unit test for 'show platform resources'
@@ -50,19 +51,18 @@ class test_show_platform_resources(unittest.TestCase):
     # Expected unparsed output
     golden_output1 = {'execute.return_value': '''
 cEdge# show platform resources
-**State Acronym: H - Healthy, W - Warning, C - Critical                                             
+**State Acronym: H - Healthy, W - Warning, C - Critical
 Resource                 Usage                 Max             Warning         Critical        State
 ----------------------------------------------------------------------------------------------------
-RP0 (ok, active)                                                                               H    
- Control Processor       8.20%                 100%            80%             90%             H    
-  DRAM                   2578MB(65%)           3942MB          88%             93%             H    
-ESP0(ok, active)                                                                               H    
- QFP                                                                                           H    
-  DRAM                   27467KB(10%)          262144KB        80%             90%             H    
-  IRAM                   213KB(10%)            2048KB          80%             90%             H    
-  CPU Utilization        0.00%                 100%            90%             95%             H    
+RP0 (ok, active)                                                                               H
+ Control Processor       8.20%                 100%            80%             90%             H
+  DRAM                   2578MB(65%)           3942MB          88%             93%             H
+ESP0(ok, active)                                                                               H
+ QFP                                                                                           H
+  DRAM                   27467KB(10%)          262144KB        80%             90%             H
+  IRAM                   213KB(10%)            2048KB          80%             90%             H
+  CPU Utilization        0.00%                 100%            90%             95%             H
   '''}
-
 
     def test_show_platform_resources_full1(self):
         self.maxDiff = None
@@ -79,4 +79,4 @@ ESP0(ok, active)                                                                
                 parsed_output = obj.parse()
 
 if __name__ == '__main__':
-    unittest.main()    
+    unittest.main()
